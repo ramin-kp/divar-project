@@ -23,4 +23,10 @@ button,
 select,
 input {
   font-family: inherit;
+  outline: none;
+}
+.Toastify__toast-body {
+  font-family: "vazir";
+  font-weight: 400;
+  text-align: right;
 }
