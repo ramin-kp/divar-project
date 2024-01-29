@@ -1,4 +1,5 @@
 import api from "../configs/api";
+import { setAccessToken, setRefreshToken } from "../utils/cookie";
 import customToast from "./../utils/toast";
 
 const postPhoneNumber = async (mobile, setStep) => {
@@ -17,6 +18,8 @@ const postCodeNumber = async (code, mobile) => {
     console.log(sendCode)
     if (sendCode.status === 200) {
       customToast("success", "با موفقیت وارد شدید");
+      setAccessToken(sendCode.data.accessToken)
+      setRefreshToken(sendCode.data.refreshToken)
      
     }
   } catch (error) {
