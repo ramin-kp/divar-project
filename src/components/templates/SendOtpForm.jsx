@@ -1,5 +1,6 @@
 import React from "react";
 import { postCodeNumber } from "../../services/auth";
+import { ToastContainer } from "react-toastify";
 
 function SendOtpForm({ setStep, code, setCode, mobile }) {
   const onSubmit = async (event) => {
@@ -17,6 +18,7 @@ function SendOtpForm({ setStep, code, setCode, mobile }) {
       />
       <button type="submit">تایید</button>
       <button onClick={() => setStep(1)}>تغییر شماره موبایل</button>
+      <ToastContainer />
     </form>
   );
 }

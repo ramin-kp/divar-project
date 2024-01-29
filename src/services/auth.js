@@ -1,5 +1,5 @@
 import api from "../configs/api";
-import customToast from "../utils/toast";
+import customToast from "./../utils/toast";
 
 const postPhoneNumber = async (mobile, setStep) => {
   try {
@@ -14,14 +14,13 @@ const postPhoneNumber = async (mobile, setStep) => {
 const postCodeNumber = async (code, mobile) => {
   try {
     const sendCode = await api.post("/auth/check-otp", { code, mobile });
-    console.log(sendCode);
+    console.log(sendCode)
     if (sendCode.status === 200) {
       customToast("success", "با موفقیت وارد شدید");
-    } else {
-      customToast("error", "مدت زمان کد تایید به پایان رسیده است");
+     
     }
   } catch (error) {
-    customToast("error", "لطفا بعدا دوباره امتحان کنید");
+    customToast("error", " مدت زمان کد تایید شما به پایان رسیده است");
   }
 };
 export { postPhoneNumber, postCodeNumber };
