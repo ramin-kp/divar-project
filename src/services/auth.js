@@ -1,5 +1,5 @@
 import api from "../configs/api";
-import { setAccessToken, setRefreshToken } from "../utils/cookie";
+import setCookie from "../utils/cookie";
 import customToast from "./../utils/toast";
 
 const postPhoneNumber = async (mobile, setStep) => {
@@ -15,12 +15,10 @@ const postPhoneNumber = async (mobile, setStep) => {
 const postCodeNumber = async (code, mobile) => {
   try {
     const sendCode = await api.post("/auth/check-otp", { code, mobile });
-    console.log(sendCode)
+    console.log(sendCode);
     if (sendCode.status === 200) {
+      setCookie(sendCode.data);
       customToast("success", "با موفقیت وارد شدید");
-      setAccessToken(sendCode.data.accessToken)
-      setRefreshToken(sendCode.data.refreshToken)
-     
     }
   } catch (error) {
     customToast("error", " مدت زمان کد تایید شما به پایان رسیده است");

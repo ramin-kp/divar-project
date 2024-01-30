@@ -1,12 +1,19 @@
 import React from "react";
-import api from "./configs/api";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./router/Router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import defaultOptions from "./configs/reactQuery";
 
 export default function App() {
+  const query = new QueryClient({ defaultOptions });
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <QueryClientProvider client={query}>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
