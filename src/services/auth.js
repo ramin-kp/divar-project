@@ -1,5 +1,5 @@
 import api from "../configs/api";
-import setCookie from "../utils/cookie";
+import {setCookie} from "../utils/cookie";
 import customToast from "./../utils/toast";
 
 const postPhoneNumber = async (mobile, setStep) => {

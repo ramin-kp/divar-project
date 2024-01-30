@@ -1,8 +1,8 @@
 const defaultOptions = {
   refetchOnMount: false,
-  refetchOnWidowFocus: false,
+  refetchOnWindowFocus: false,
   staleTime: 60 * 100,
-  retry: false,
+  retry: 1,
 };
 
 export default defaultOptions;
