@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { postPhoneNumber } from "../../services/auth";
@@ -28,7 +27,6 @@ function CheckOtpForm({ mobile, setMobile, setStep }) {
         />
         <button type="submit">تأیید</button>
       </form>
-      <ToastContainer />
     </>
   );
 }
