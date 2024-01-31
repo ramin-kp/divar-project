@@ -8,8 +8,8 @@ import { useQuery } from "@tanstack/react-query";
 
 function Router() {
   const { data, isLoading } = useQuery(["profile"], getProfile);
-
-  // if (isLoading) return <h1>loading ...</h1>;
+  console.log(data);
+  if (isLoading) return <h1>loading ...</h1>;
 
   return (
     <Routes>
