@@ -3,7 +3,7 @@ import { LoadingButton } from "@mui/lab";
 
 import { useEffect, useState } from "react";
 import customToast from "../../utils/toast";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postCategory } from "../../services/admin";
 
 function CategoryForm() {
@@ -12,7 +12,11 @@ function CategoryForm() {
     slug: "",
     icon: "",
   });
-  const { data, error, isLoading, mutate } = useMutation(postCategory);
+
+  const queryClient = useQueryClient();
+  const { data, error, isLoading, mutate } = useMutation(postCategory, {
+    onSuccess: () => queryClient.invalidateQueries("get-category"),
+  });
   console.log({ data, isLoading, error });
   const changeHandler = (event) => {
     setCategoryData({
@@ -47,12 +51,14 @@ function CategoryForm() {
         flexDirection: "column",
         alignItems: "start",
         justifyContent: "start",
-        gap: "20px",
+        gap: "25px",
         paddingTop: "10px",
         borderTop: "solid #991b1b",
       }}
     >
-      <h1>دسته بندی</h1>
+      <h1 style={{ padding: "14px 0", borderBottom: "solid #991b1b" }}>
+        دسته بندی جدید
+      </h1>
       <TextField
         id="outlined-basic"
         label=" دسته بندی خود را وارد کنید"

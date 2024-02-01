@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <header style={{ marginBottom: "100px" }}>
-      <AppBar color="inherit" sx={{ padding: "0 150px", zIndex: 0 }}>
+      <AppBar color="inherit" sx={{ padding: "0 150px", zIndex: 100 }}>
         <Toolbar
           sx={{
             display: "flex",
