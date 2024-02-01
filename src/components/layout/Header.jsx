@@ -6,10 +6,13 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
+import getProfile from "./../../services/user";
+
 function Header() {
+  const { data, isLoading } = useQuery(["profile"], getProfile);
   return (
     <header style={{ marginBottom: "100px" }}>
       <AppBar color="inherit" sx={{ padding: "0 150px", zIndex: 100 }}>
@@ -60,6 +63,21 @@ function Header() {
               gap: "10px",
             }}
           >
+            {data && data.data.role === "ADMIN" && (
+              <Link
+                to="/admin"
+                style={{
+                  display: "inline-block",
+                  padding: "5px 10px",
+                  backgroundColor: "#e5e7eb",
+                  color: "#b91c1c",
+                  borderRadius: "4px",
+                  fontWeight: "600",
+                }}
+              >
+                پنل ادمین
+              </Link>
+            )}
             <Link
               to="/auth"
               style={{

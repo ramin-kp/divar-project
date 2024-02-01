@@ -17,7 +17,7 @@ function SendOtpForm({ setStep, code, setCode, mobile }) {
     }
 
     const { data, status } = await postCodeNumber(code, mobile);
-    // console.log(data, status);
+
     if (status === 200) {
       customToast("success", "با موفقیت به حساب کاربری خود وارد شدید.");
       setCookie(data);
@@ -27,7 +27,7 @@ function SendOtpForm({ setStep, code, setCode, mobile }) {
     } else {
       customToast("error", "مشکلی پیش آمده");
     }
-    // console.log(await postCodeNumber(code, mobile));
+
   };
   return (
     <form onSubmit={onSubmit}>

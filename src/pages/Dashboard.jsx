@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import PostForm from "../components/templates/PostForm";
 
 function Dashboard() {
   return (
-    <div>Dashboard</div>
-  )
+    <div>
+      <PostForm />
+    </div>
+  );
 }
 
-export default Dashboard
+export default Dashboard;

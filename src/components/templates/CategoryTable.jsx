@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteCategory, getCategories } from "../../services/admin";
+import { Box } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+
 import Loader from "./../Loader";
+import { deleteCategory, getCategories } from "../../services/admin";
 import customToast from "./../../utils/toast";
-import { Box, Button } from "@mui/material";
 
 function CategoryTable() {
+  const [categoryId, setCategoryId] = useState(null);
   const { data, isLoading, error } = useQuery(["get-category"], getCategories);
   const queryClient = useQueryClient();
+
   const {
     mutate,
     data: deleteData,
@@ -17,10 +21,12 @@ function CategoryTable() {
     onSuccess: () => queryClient.invalidateQueries("get-category"),
   });
 
-  console.log({ deleteData, isLoadingDelete, deleteError });
-  const useLinkClickHandler = (id) => {
+
+  const ClickHandler = (id) => {
+    setCategoryId(id);
     mutate(id);
   };
+
   useEffect(() => {
     if (deleteData?.status === 200) {
       customToast("success", "دسته بندی مورد نظر با موفقیت حذف شد");
@@ -29,6 +35,7 @@ function CategoryTable() {
       customToast("error", "مشکلی پیش آمده لطفا بعدا امتحان کنید");
     }
   }, [deleteData]);
+
   return (
     <div>
       {isLoading ? (
@@ -63,15 +70,16 @@ function CategoryTable() {
               gap={2}
               width="350px"
             >
-              <Button
+              <LoadingButton
                 variant="contained"
                 color="mainColor"
                 size="small"
                 sx={{ fontWeight: "bold", fontSize: ".9rem" }}
-                onClick={() => useLinkClickHandler(item._id)}
+                onClick={() => ClickHandler(item._id)}
+                loading={categoryId === item._id && isLoadingDelete}
               >
                 حذف دسته بندی
-              </Button>
+              </LoadingButton>
               <span
                 style={{
                   fontWeight: "600",

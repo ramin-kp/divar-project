@@ -17,7 +17,7 @@ function CategoryForm() {
   const { data, error, isLoading, mutate } = useMutation(postCategory, {
     onSuccess: () => queryClient.invalidateQueries("get-category"),
   });
-  console.log({ data, isLoading, error });
+
   const changeHandler = (event) => {
     setCategoryData({
       ...categoryData,
