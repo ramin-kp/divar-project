@@ -17,13 +17,12 @@ function SendOtpForm({ setStep, code, setCode, mobile }) {
     }
 
     const { data, status } = await postCodeNumber(code, mobile);
-    console.log(data, status);
+    // console.log(data, status);
     if (status === 200) {
       customToast("success", "با موفقیت به حساب کاربری خود وارد شدید.");
-      setTimeout(() => {
-        setCookie(data);
-        navigate("/");
-      }, 3000);
+      setCookie(data);
+      navigate("/");
+
       refetch();
     } else {
       customToast("error", "مشکلی پیش آمده");

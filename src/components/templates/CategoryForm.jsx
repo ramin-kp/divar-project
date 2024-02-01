@@ -1,6 +1,7 @@
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import customToast from "../../utils/toast";
 import { useMutation } from "@tanstack/react-query";
 import { postCategory } from "../../services/admin";
@@ -28,6 +29,15 @@ function CategoryForm() {
     }
     mutate(categoryData);
   };
+
+  useEffect(() => {
+    if (data?.status === 201) {
+      customToast("success", "دسته بندی مورد نظر با موفقیت ایجاد شد");
+    } else if (error) {
+      customToast("error", "مشکلی پیش آمده لطفا بعدا دوباره امتحان کنید");
+    }
+  }, [data]);
+
   return (
     <form
       onChange={changeHandler}
@@ -64,9 +74,16 @@ function CategoryForm() {
         name="slug"
         color="mainColor"
       />
-      <Button variant="contained" type="submit" color="mainColor">
-        ایجاد
-      </Button>
+
+      <LoadingButton
+        variant="contained"
+        type="submit"
+        loading={isLoading}
+        disabled={isLoading}
+        color="mainColor"
+      >
+        <span>ایجاد</span>
+      </LoadingButton>
     </form>
   );
 }
