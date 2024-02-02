@@ -86,6 +86,7 @@ function PostTable() {
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
+                      color: "#6b7280",
                     }}
                   >
                     {item.options.content}
