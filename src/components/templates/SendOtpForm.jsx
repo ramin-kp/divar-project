@@ -4,7 +4,7 @@ import customToast from "../../utils/toast";
 import { setCookie } from "../../utils/cookie";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import getProfile from "../../services/user";
+import { getProfile } from "../../services/user";
 
 function SendOtpForm({ setStep, code, setCode, mobile }) {
   const navigate = useNavigate();
@@ -27,7 +27,6 @@ function SendOtpForm({ setStep, code, setCode, mobile }) {
     } else {
       customToast("error", "مشکلی پیش آمده");
     }
-
   };
   return (
     <form onSubmit={onSubmit}>

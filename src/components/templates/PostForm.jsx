@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { getCategories } from "../../services/admin";
 import customToast from "./../../utils/toast";
@@ -26,6 +26,7 @@ function PostForm() {
     category: "",
     images: "",
   });
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const { data } = useQuery(["get-category"], getCategories);
 
@@ -90,6 +91,7 @@ function PostForm() {
         console.log(res);
         customToast("success", "محصول جدید با موفقیت ثبت شد");
         setIsLoading(false);
+        queryClient.invalidateQueries("get-category");
       })
       .catch((err) => {
         customToast("مشکلی پیش آمده است");

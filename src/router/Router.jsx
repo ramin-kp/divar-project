@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 
 import HomePage from "../pages/HomePage";
 import Auth from "../pages/auth";
-import getProfile from "../services/user";
+import { getProfile } from "../services/user";
 import { useQuery } from "@tanstack/react-query";
 import Dashboard from "../pages/Dashboard";
 import Admin from "../pages/Admin";

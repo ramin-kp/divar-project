@@ -9,7 +9,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
-import getProfile from "./../../services/user";
+import { getProfile } from "./../../services/user";
 
 function Header() {
   const { data, isLoading } = useQuery(["profile"], getProfile);

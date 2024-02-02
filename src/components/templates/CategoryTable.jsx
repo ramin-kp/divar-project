@@ -9,18 +9,17 @@ import customToast from "./../../utils/toast";
 
 function CategoryTable() {
   const [categoryId, setCategoryId] = useState(null);
-  const { data, isLoading, error } = useQuery(["get-category"], getCategories);
+  const { data, isLoading } = useQuery(["get-category"], getCategories);
   const queryClient = useQueryClient();
 
   const {
     mutate,
     data: deleteData,
     isLoading: isLoadingDelete,
-    error: deleteError,
+    error,
   } = useMutation(deleteCategory, {
     onSuccess: () => queryClient.invalidateQueries("get-category"),
   });
-
 
   const ClickHandler = (id) => {
     setCategoryId(id);
