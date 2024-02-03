@@ -2,7 +2,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { postPhoneNumber } from "../../services/auth";
 import customToast from "../../utils/toast";
-import { Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 function CheckOtpForm({ mobile, setMobile, setStep }) {
   const submitHandler = async (event) => {
@@ -15,7 +15,8 @@ function CheckOtpForm({ mobile, setMobile, setStep }) {
     }
   };
   return (
-    <div
+    <Box
+      component="div"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -56,7 +57,7 @@ function CheckOtpForm({ mobile, setMobile, setStep }) {
           تأیید
         </Button>
       </form>
-    </div>
+    </Box>
   );
 }
 

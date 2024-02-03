@@ -1,10 +1,10 @@
-import React, { useState } from "react";
 import { postCodeNumber } from "../../services/auth";
 import customToast from "../../utils/toast";
 import { setCookie } from "../../utils/cookie";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../../services/user";
+import { Box, Button, TextField, Typography } from "@mui/material";
 
 function SendOtpForm({ setStep, code, setCode, mobile }) {
   const navigate = useNavigate();
@@ -29,17 +29,62 @@ function SendOtpForm({ setStep, code, setCode, mobile }) {
     }
   };
   return (
-    <form onSubmit={onSubmit}>
-      <h1>کد تایید خود را وارد کنید.</h1>
-      <input
-        type="text"
-        placeholder="کد تایید را وارد کنید"
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-      />
-      <button type="submit">تایید</button>
-      <button onClick={() => setStep(1)}>تغییر شماره موبایل</button>
-    </form>
+    <Box
+      component="div"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "calc(100vh - 210px)",
+      }}
+    >
+      <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "400px",
+          height: "400px",
+          padding: "20px",
+          backgroundColor: "white",
+          borderRadius: "10px",
+          boxShadow: "rgba(0,0,0,0.5) 0 0 5px",
+        }}
+        onSubmit={onSubmit}
+      >
+        <Typography variant="h5" color="#991b1b" fontWeight="600">
+          کد تایید خود را وارد کنید
+        </Typography>
+
+        <TextField
+          id="outlined-basic"
+          label="کد تایید"
+          variant="outlined"
+          color="mainColor"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+        />
+        <Box component="div">
+          <Button
+            variant="contained"
+            color="mainColor"
+            type="submit"
+            sx={{ mr: "30px" }}
+          >
+            تأیید
+          </Button>
+          <Button
+            variant="contained"
+            color="mainColor"
+            onClick={() => setStep(1)}
+          >
+            تغییر شماره موبایل
+          </Button>
+        </Box>
+      </form>
+    </Box>
   );
 }
 

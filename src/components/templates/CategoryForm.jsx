@@ -37,6 +37,11 @@ function CategoryForm() {
   useEffect(() => {
     if (data?.status === 201) {
       customToast("success", "دسته بندی مورد نظر با موفقیت ایجاد شد");
+      setCategoryData({
+        name: "",
+        slug: "",
+        icon: "",
+      });
     } else if (error) {
       customToast("error", "مشکلی پیش آمده لطفا بعدا دوباره امتحان کنید");
     }
@@ -64,6 +69,7 @@ function CategoryForm() {
         label=" دسته بندی خود را وارد کنید"
         variant="outlined"
         name="name"
+        value={categoryData.name}
         color="mainColor"
       />
       <TextField
@@ -71,6 +77,7 @@ function CategoryForm() {
         label="اسلاگ مورد نظر را وارد کنید"
         variant="outlined"
         name="icon"
+        value={categoryData.icon}
         color="mainColor"
       />
       <TextField
@@ -78,6 +85,7 @@ function CategoryForm() {
         label="آیکون مورد نظر را وارد کنید"
         variant="outlined"
         name="slug"
+        value={categoryData.slug}
         color="mainColor"
       />
 
